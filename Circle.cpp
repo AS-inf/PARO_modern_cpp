@@ -2,21 +2,24 @@
 #include <math.h>
 #include <iostream>
 
-Circle::Circle(double r)
-    : r_(r)
+Circle::Circle(double r):Shape(Color::GREEN), r_(r)
 {}
 
-Circle::Circle(const Circle & other)
+Circle::Circle(Color c): Shape(c)
+{}
+
+Circle::Circle(Color c, double r) : Circle(c)
 {
-    r_ = other.getRadius();
+    r_ = r;
 }
 
-double Circle::getArea() const
+
+double Circle::getArea() const noexcept
 {
     return M_PI * r_ * r_;
 }
 
-double Circle::getPerimeter() const
+double Circle::getPerimeter() const noexcept
 {
     return 2 * M_PI * r_;
 }
@@ -32,3 +35,10 @@ void Circle::print() const
               << "          area: " << getArea() << std::endl
               << "     perimeter: " << getPerimeter() << std::endl;
 }
+
+[[deprecated]]double Circle::getPi() const
+{
+    return M_PI;
+}
+
+

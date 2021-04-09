@@ -1,23 +1,21 @@
 #include "Rectangle.hpp"
 #include <iostream>
 
-Rectangle::Rectangle(double x, double y)
-    : x_(x),
-      y_(y)
+Rectangle::Rectangle(double x, double y):Shape(Color::RED), x_(x), y_(y)
 {}
 
-Rectangle::Rectangle(const Rectangle &other)
-{
-    x_ = other.getX();
-    y_ = other.getY();
-}
+Rectangle::Rectangle(Color c): Shape(c)
+{}
 
-double Rectangle::getArea() const
+Rectangle::Rectangle(Color c, double x, double y): Shape(c), x_(x), y_(y)
+{}
+
+double Rectangle::getArea() const noexcept
 {
     return x_ * y_;
 }
 
-double Rectangle::getPerimeter() const
+double Rectangle::getPerimeter() const noexcept
 {
     return 2 * (x_ + y_);
 }
@@ -39,3 +37,4 @@ void Rectangle::print() const
               << "          area: " << getArea() << std::endl
               << "     perimeter: " << getPerimeter() << std::endl;
 }
+

@@ -5,18 +5,24 @@
 class Rectangle : public Shape
 {
 public:
+    Rectangle(Rectangle&& r) noexcept           = default;
+    Rectangle(const Rectangle & other) noexcept = default;
     Rectangle(double x, double y);
-    Rectangle(const Rectangle & other);
+    Rectangle(Color c);
+    Rectangle(Color c, double x, double y);
+    
 
-    double getArea() const;
-    double getPerimeter() const;
-    double getX() const;
+    virtual double getArea() const noexcept(true) override;
+    virtual double getPerimeter() const noexcept(true) override;
+    virtual double getX() const final;
+    virtual void print() const override;
     double getY() const;
-    void print() const;
+    
+    Rectangle& operator=(Rectangle&& other) noexcept = default;
 
 private:
-    Rectangle();
+    Rectangle() = delete;
 
-    double x_;
-    double y_;
+    double x_{0};
+    double y_{0};
 };
